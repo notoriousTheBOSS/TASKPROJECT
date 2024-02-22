@@ -27,7 +27,7 @@ const Modal = ({ onClose, postDriver }) => {
     };
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-filter backdrop-blur-sm">
-            <div className="w-[740px] h-[495px] rounded-lg border  z-60 absolute bg-white top-[20%] left-[30%]">
+            <div className="w-[740px] h-[495px] rounded-lg border  z-80 absolute bg-white top-[20%] left-[30%]">
                 <div className="h-[64px] p-4 flex items-center justify-between border-b">
                     <h3 className="font-[SemiBold] text-[20px] leading-6">
                         Все водители
@@ -73,7 +73,6 @@ const Modal = ({ onClose, postDriver }) => {
                             required
                             type="number"
                             name="number"
-                            max={9999999999999}
                             maxLength={13}
                             value={formData.number}
                             onChange={handleChange}

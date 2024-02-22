@@ -73,7 +73,6 @@ const ModalEdit = ({ onClose }) => {
                             required
                             type="number"
                             name="number"
-                            max={9999999999999}
                             maxLength={13}
                             value={formData.number}
                             onChange={handleChange}

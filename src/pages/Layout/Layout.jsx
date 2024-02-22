@@ -12,6 +12,7 @@ const Layout = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isModalVisible2, setIsModalVisible2] = useState(false);
     const [editingDriver, setEditingDriver] = useState(null);
     const itemsPerPage = 10;
 
@@ -46,7 +47,7 @@ const Layout = () => {
     };
     const handleEditClick = (driver) => {
         setEditingDriver(driver);
-        setIsModalVisible(true);
+        setIsModalVisible2(true);
     };
     const putDriver = (id, updatedData) => {
         driversAPI
@@ -137,10 +138,10 @@ const Layout = () => {
                                     handleEditClick={handleEditClick}
                                     handleDelete={deleteDriver}
                                 />
-                                {isModalVisible && (
+                                {isModalVisible2 && (
                                     <ModalEdit
                                         onClose={() => {
-                                            setIsModalVisible(false);
+                                            setIsModalVisible2(false);
                                             setEditingDriver(null); // Reset editing state
                                         }}
                                         postDriver={postDrivers}
