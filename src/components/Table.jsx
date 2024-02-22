@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import editor from "../assets/icons/editorMenu.svg";
+import { Dropdown, Space } from "antd";
+import edit from "../assets/icons/edit.svg";
+import deleteIcon from "../assets/icons/deleteIcon.svg";
 
 const formatCreatedAt = (createdAt) => {
     const date = new Date(createdAt);
@@ -8,7 +11,36 @@ const formatCreatedAt = (createdAt) => {
     const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${formattedDate} ${hours}:${minutes}`;
 };
-const Table = ({ data }) => {
+
+const items = [
+    {
+        label: (
+            <button className="w-full flex items-center gap-3 p-2 rounded-s-sm">
+                <span className="h-[32px] w-[32px] bg-[#36AD490D] rounded-md grid place-content-center ">
+                    <img src={edit} alt="" />
+                </span>
+                Редактировать
+            </button>
+        ),
+        key: "0",
+    },
+    {
+        type: "divider",
+    },
+    {
+        label: (
+            <button className="w-full flex items-center gap-3 p-2 rounded-s-sm">
+                <span className="h-[32px] w-[32px] bg-[#FEE8E6] rounded-md grid place-content-center ">
+                    <img src={deleteIcon} alt="" />
+                </span>
+                Удалить
+            </button>
+        ),
+        key: "1",
+    },
+];
+
+const Table = ({ data, handleEditClick }) => {
     const sortedData = data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
@@ -81,7 +113,20 @@ const Table = ({ data }) => {
                                         {formatCreatedAt(item.createdAt)}
                                     </td>
                                     <td className="border-r-[1px] px-4  ">
-                                        <button>...</button>
+                                        <Dropdown
+                                            menu={{
+                                                items,
+                                            }}
+                                            trigger={["click"]}
+                                        >
+                                            <button
+                                                onClick={(e) =>
+                                                    e.preventDefault()
+                                                }
+                                            >
+                                                <Space>...</Space>
+                                            </button>
+                                        </Dropdown>
                                     </td>
                                 </tr>
                             </tbody>

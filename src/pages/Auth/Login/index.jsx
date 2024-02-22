@@ -14,23 +14,6 @@ const index = () => {
     const navigate = useNavigate();
     const [isPassword, setIsPassword] = useState(true);
 
-    // const handleForm = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const response = await loginAPI.login(loginData);
-    //         const user = response.data.map((val) => {
-    //             if (
-    //                 val.username == loginData.username &&
-    //                 val.password == loginData.password
-    //             ) {
-    //                 navigate("/dashboard");
-    //             }
-    //         });
-    //         console.log("yoq");
-    //     } catch (error) {
-    //         console.error("Foydalanuvchi kiritishda xatolik", error);
-    //     }
-    // };
     const handleForm = async (e) => {
         e.preventDefault();
         try {
@@ -62,13 +45,13 @@ const index = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container border-x">
             <div className="flex items-center">
-                <div className="w-[738px] h-[1024px]">
-                    <img src={evakuator} alt="" />
+                <div className="w-[738px]">
+                    <img src={evakuator} className="h-screen" alt="" />
                 </div>
                 <div className="flex w-[702px] items-center justify-center">
-                    <div className="w-[538px] h-[864px] flex flex-col justify-between items-center">
+                    <div className="w-[538px] h-[764px] flex flex-col justify-between items-center">
                         <h2 className="font-[Bold] text-[48px] place-items-center">
                             Вход в систему
                         </h2>

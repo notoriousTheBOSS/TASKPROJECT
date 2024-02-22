@@ -2,11 +2,12 @@ import React from "react";
 import { useState } from "react";
 import expandReduce from "../assets/icons/expandReduce.svg";
 import allorders from "../assets/icons/allorders.svg";
+import EditDeleteModal from "./EditDeleteModal";
 
 const Sidebar = () => {
-    const [expand, reduce] = useState();
+    const [expand, setExpand] = useState();
     return (
-        <div className="w-[280px]  h-screen border border-l-0 border-[#E5E9EB]">
+        <div className="w-[280px]  h-screen border border-l-0 fixed border-[#E5E9EB]">
             <div className="border-b flex items-center justify-between h-[56px] px-[16px]">
                 <h2 className="font-[Bold] text-[24px] leading-9 ">
                     TASK PROJECT
