@@ -5,6 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import add from "../../assets/icons/add.svg";
 import Table from "../../components/Table";
 import Modal from "../../components/Modal";
+import ModalEdit from "../../components/ModalEdit";
 import driversAPI from "../../service/drivers";
 
 const Layout = () => {
@@ -25,6 +26,11 @@ const Layout = () => {
                 console.log("err courses", err);
             });
     };
+    const getOne = () => {
+        driversAPI.getOneDriver().then((res) => {
+            console.log("get one", res);
+        });
+    };
 
     const postDrivers = (data) => {
         driversAPI
@@ -38,56 +44,6 @@ const Layout = () => {
                 console.error(err);
             });
     };
-
-    // const editDriver = (updatedData) => {
-    //     driversAPI
-    //         .editDrivers(updatedData.id, updatedData)
-    //         .then((res) => {
-    //             console.log("edit driver", res);
-    //             const updatedDataIndex = data.findIndex(
-    //                 (item) => item.id === updatedData.id
-    //             );
-    //             if (updatedDataIndex !== -1) {
-    //                 const newData = [...data];
-    //                 newData[updatedDataIndex] = res.data;
-    //                 setData(newData);
-    //             }
-    //             setIsModalVisible(false);
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //         });
-    // };
-
-    // const editDriver = (updatedData) => {
-    //     driversAPI
-    //         .editDrivers(updatedData.id, updatedData)
-    //         .then((res) => {
-    //             console.log("edit driver", res);
-    //             const updatedDataIndex = data.findIndex(
-    //                 (item) => item.id === updatedData.id
-    //             );
-    //             if (updatedDataIndex !== -1) {
-    //                 const newData = [...data];
-    //                 newData[updatedDataIndex] = res.data;
-    //                 setData(newData);
-    //             }
-    //             setIsModalVisible(false);
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //         });
-    // };
-    // const deleteDriver = (id) => {
-    //     driversAPI
-    //         .deleteDrivers(id)
-    //         .then(() => {
-    //             setData(data.filter((item) => item.id !== id));
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //         });
-    // };
     const handleEditClick = (driver) => {
         setEditingDriver(driver);
         setIsModalVisible(true);
@@ -125,6 +81,7 @@ const Layout = () => {
 
     useEffect(() => {
         getDrivers();
+        getOne();
     }, []);
 
     const totalItems = data.length;
@@ -181,7 +138,7 @@ const Layout = () => {
                                     handleDelete={deleteDriver}
                                 />
                                 {isModalVisible && (
-                                    <Modal
+                                    <ModalEdit
                                         onClose={() => {
                                             setIsModalVisible(false);
                                             setEditingDriver(null); // Reset editing state
@@ -191,7 +148,6 @@ const Layout = () => {
                                         driver={editingDriver} // Pass editingDriver to modal for editing
                                     />
                                 )}
-                                ;
                             </div>
                             <div className="h-[56px] border-t flex items-center px-4 place-content-end">
                                 <Pagination

@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import expandReduce from "../assets/icons/expandReduce.svg";
 import allorders from "../assets/icons/allorders.svg";
-import EditDeleteModal from "./EditDeleteModal";
 
 const Sidebar = () => {
     const [expand, setExpand] = useState();

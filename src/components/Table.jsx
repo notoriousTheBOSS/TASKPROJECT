@@ -12,35 +12,37 @@ const formatCreatedAt = (createdAt) => {
     return `${formattedDate} ${hours}:${minutes}`;
 };
 
-const items = [
-    {
-        label: (
-            <button className="w-full flex items-center gap-3 p-2 rounded-s-sm">
-                <span className="h-[32px] w-[32px] bg-[#36AD490D] rounded-md grid place-content-center ">
-                    <img src={edit} alt="" />
-                </span>
-                Редактировать
-            </button>
-        ),
-        key: "0",
-    },
-    {
-        type: "divider",
-    },
-    {
-        label: (
-            <button className="w-full flex items-center gap-3 p-2 rounded-s-sm">
-                <span className="h-[32px] w-[32px] bg-[#FEE8E6] rounded-md grid place-content-center ">
-                    <img src={deleteIcon} alt="" />
-                </span>
-                Удалить
-            </button>
-        ),
-        key: "1",
-    },
-];
-
 const Table = ({ data, handleEditClick }) => {
+    const items = [
+        {
+            label: (
+                <button
+                    onClick={handleEditClick}
+                    className="w-full flex items-center gap-3 p-2 rounded-s-sm"
+                >
+                    <span className="h-[32px] w-[32px] bg-[#36AD490D] rounded-md grid place-content-center ">
+                        <img src={edit} alt="" />
+                    </span>
+                    Редактировать
+                </button>
+            ),
+            key: "0",
+        },
+        {
+            type: "divider",
+        },
+        {
+            label: (
+                <button className="w-full flex items-center gap-3 p-2 rounded-s-sm">
+                    <span className="h-[32px] w-[32px] bg-[#FEE8E6] rounded-md grid place-content-center ">
+                        <img src={deleteIcon} alt="" />
+                    </span>
+                    Удалить
+                </button>
+            ),
+            key: "1",
+        },
+    ];
     const sortedData = data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
