@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: SairaMedium;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    font-family: Regular;
+}
+
+@font-face {
+    font-family: Regular;
+    font-weight: 400;
+    src: url(./assets/fonts/Inter-Regular.ttf);
+}
+@font-face {
+    font-family: Medium;
+    font-weight: 500;
+    src: url(./assets/fonts/Inter-Medium.ttf);
+}
+@font-face {
+    font-family: SemiBold;
+    font-weight: 600;
+    src: url(./assets/fonts/Inter-SemiBold.ttf);
+}
+@font-face {
+    font-family: Bold;
+    font-weight: 700;
+    src: url(./assets/fonts/Inter-Bold.ttf);
+}
