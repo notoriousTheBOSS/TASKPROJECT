@@ -5,13 +5,24 @@ import edit from "../assets/icons/edit.svg";
 import deleteIcon from "../assets/icons/deleteIcon.svg";
 
 const formatCreatedAt = (createdAt) => {
+    if (!createdAt || isNaN(Date.parse(createdAt))) {
+        // If not valid, return an error message
+        return "Invalid createdAt value";
+    }
+
     const date = new Date(createdAt);
+    // Check if the parsed date is valid
+    if (isNaN(date.getTime())) {
+        // If not valid, return an error message
+        return "Invalid date";
+    }
+
+    // Continue with the formatting
     const formattedDate = date.toISOString().split("T")[0];
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${formattedDate} ${hours}:${minutes}`;
 };
-
 const Table = ({ data, handleEditClick }) => {
     const items = [
         {
@@ -33,7 +44,10 @@ const Table = ({ data, handleEditClick }) => {
         },
         {
             label: (
-                <button className="w-full flex items-center gap-3 p-2 rounded-s-sm">
+                <button
+                    onClick={() => console.log()}
+                    className="w-full flex items-center gap-3 p-2 rounded-s-sm"
+                >
                     <span className="h-[32px] w-[32px] bg-[#FEE8E6] rounded-md grid place-content-center ">
                         <img src={deleteIcon} alt="" />
                     </span>

@@ -27,12 +27,6 @@ const Layout = () => {
                 console.log("err courses", err);
             });
     };
-    const getOne = () => {
-        driversAPI.getOneDriver().then((res) => {
-            console.log("get one", res);
-        });
-    };
-
     const postDrivers = (data) => {
         driversAPI
             .postDrivers(data)
@@ -45,56 +39,54 @@ const Layout = () => {
                 console.error(err);
             });
     };
+
     const handleEditClick = (driver) => {
         setEditingDriver(driver);
         setIsModalVisible2(true);
     };
-    const putDriver = (id, updatedData) => {
-        driversAPI
-            .editDrivers(id, updatedData)
-            .then((res) => {
-                console.log("edit driver", res);
-                const updatedDataIndex = data.findIndex(
-                    (item) => item.id === id
-                );
-                if (updatedDataIndex !== -1) {
-                    const newData = [...data];
-                    newData[updatedDataIndex] = res.data;
-                    setData(newData);
-                }
-                setIsModalVisible(false);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    };
 
-    const deleteDriver = (id) => {
-        driversAPI
-            .deleteDrivers(id)
-            .then(() => {
-                setData(data.filter((driver) => driver.id !== id));
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    };
+    // const putDriver = (id, updatedData) => {
+    //     driversAPI
+    //         .editDrivers(id, updatedData)
+    //         .then((res) => {
+    //             console.log("edit driver", res);
+    //             const updatedDataIndex = data.findIndex(
+    //                 (item) => item.id === id
+    //             );
+    //             if (updatedDataIndex !== -1) {
+    //                 const newData = [...data];
+    //                 newData[updatedDataIndex] = res.data;
+    //                 setData(newData);
+    //             }
+    //             setIsModalVisible(false);
+    //         })
+    //         .catch((err) => {
+    //             console.error(err);
+    //         });
+    // };
+
+    // const deleteDriver = (id) => {
+    //     driversAPI
+    //         .deleteDrivers(id)
+    //         .then(() => {
+    //             setData(data.filter((driver) => driver.id !== id));
+    //         })
+    //         .catch((err) => {
+    //             console.error(err);
+    //         });
+    // };
 
     useEffect(() => {
         getDrivers();
-        getOne();
     }, []);
 
     const totalItems = data.length;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
-
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
-
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
-
     const currentData = data.slice(startIndex, endIndex);
 
     const handleModalToggle = () => {
@@ -102,6 +94,7 @@ const Layout = () => {
         setIsModalVisible(!isModalVisible);
         setEditData(null);
     };
+
     return (
         <div className="container border-x">
             <div className="flex overflow-hidden">
@@ -136,7 +129,7 @@ const Layout = () => {
                                 <Table
                                     data={currentData}
                                     handleEditClick={handleEditClick}
-                                    handleDelete={deleteDriver}
+                                    // handleDelete={deleteDriver}
                                 />
                                 {isModalVisible2 && (
                                     <ModalEdit
@@ -144,9 +137,8 @@ const Layout = () => {
                                             setIsModalVisible2(false);
                                             setEditingDriver(null); // Reset editing state
                                         }}
-                                        postDriver={postDrivers}
-                                        putDriver={putDriver}
-                                        driver={editingDriver} // Pass editingDriver to modal for editing
+                                        // putDriver={putDriver}
+                                        // driver={editingDriver} // Pass editingDriver to modal for editing
                                     />
                                 )}
                             </div>

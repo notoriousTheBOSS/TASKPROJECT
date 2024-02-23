@@ -121,30 +121,3 @@ const index = () => {
 };
 
 export default index;
-
-// const newUser = {
-//     username,
-//     password,
-// };
-// console.log("user", newUser);
-
-// if (username.trim().length > 0) {
-//     userAPI
-//         .login(newUser)
-//         .then((res) => {
-//             console.log(res);
-//             if (res.status == 200) {
-//                 localStorage.setItem("token", res.data.token);
-//                 setTimeout(() => {
-//                     navigate("/dashboard");
-//                 }, 1000);
-//             }
-//         })
-//         .catch(() => {
-//             console.log("login failed");
-//         });
-//     setUserName("");
-//     setPassword("");
-// } else {
-//     console.log("else");
-// }
